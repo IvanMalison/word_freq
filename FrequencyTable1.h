@@ -28,5 +28,9 @@ class FrequencyTable {
   WordFreqList list;
   WordFreqList copy;
   WordFreqList reset();
+  void insert(string word, WordFreqList runner);
+  void print(WordFreqList runner);
+  int size(WordFreqList runner);
+  void get(int n, string *p_word, int *p_frequency, WordFreqList runner);
 };
 #endif

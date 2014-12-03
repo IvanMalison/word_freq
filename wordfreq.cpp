@@ -15,18 +15,23 @@ using namespace std;
 
 int main()
 {
-    string holder;
-    FrequencyTable mytable;
+  string holder;
+  FrequencyTable mytable;
 
-    while (cin >> holder) {
-	if (isalpha(holder[0])) {
-	    for (int i = 0; i < (int) holder.length(); i++) {
-		holder[i] =  tolower(holder[i]);
-		}
-		mytable.insert(holder);
-		mytable.print();
-		cout << endl;
-	    }
-    }	    
-    return 0;
+  while (cin >> holder) {
+    if (isalpha(holder[0])) {
+      cout << "yoooo" << endl;
+      for (int i = 0; i < (int) holder.length(); i++) {
+	holder[i] =  tolower(holder[i]);
+	cout << "ayooooo" << endl;
+      }
+      mytable.insert(holder);
+      cout << "wahooooo" << endl;
+      mytable.print();
+      cout << mytable.size() << endl;
+    }
+  }
+
+  mytable.print();
+  return 0;
 }

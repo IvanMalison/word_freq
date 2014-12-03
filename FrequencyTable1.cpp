@@ -28,34 +28,37 @@ bool FrequencyTable::in(string word)
 }
 void FrequencyTable::insert(string word)
 {
-  if (isEmpty(copy) or first(copy).word > word) {
-    prepend(word, 1, copy);
-    list = copy;
-    reset();
-  } else if (first(copy).word == word) {
-    set_freq(first(copy).freq + 1, copy);
-    reset();
-  } else if (isEmpty(rest(copy)) or first(rest(copy)).word > word) {
-    insertAfter(word, 1, copy);
-    reset();
-  } else {
-    copy = rest(copy);
-    insert(word);
-  }
+  insert(word, list);
 }
+void FrequencyTable::insert(string word, WordFreqList runner)
+{
+  //  list = prepend(word, 1, list);
+  if (isEmpty(runner) or first(runner).word > word) {
+    list = prepend(word, 1, runner);
+  } else if (first(runner).word == word) {
+    set_freq(first(runner).freq + 1, runner);
+  } else if (isEmpty(rest(runner)) or first(rest(runner)).word > word) {
+    insertAfter(word, 1, runner);
+  } else {
+    insert(word, rest(runner));
+  }
+ 
+}
+
 void FrequencyTable::print()
 {
-  WordFreq hold;
+  cout << "{"<< " ";
+  print(list);
+  cout << "}" << endl;
+}
 
-  cout << "{";
-  while (!isEmpty(copy)) {
-    hold = first(copy);
+void FrequencyTable::print(WordFreqList runner)
+{
+  if (!isEmpty(runner)) {
+    WordFreq hold = first(runner);
     cout << hold.freq << " " << hold.word << ", ";
-    copy = rest(copy);
+    print(rest(runner));
   }
-  cout << "}";
-
-  reset();
 }
 WordFreqList FrequencyTable::reset()
 {
@@ -68,17 +71,31 @@ WordFreqList FrequencyTable::reset()
 //{
 
 //}
-//int FrequencyTable::size()
-//{
+int FrequencyTable::size()
+{
+  return size(list);
+}
+int FrequencyTable::size(WordFreqList runner)
+{
+  return isEmpty(runner) ? 0 : 1 + size(rest(runner));
+}
 
-//}
-//void FrequencyTable::get(int n, string *p_word, int *p_frequency)
-//{
+void FrequencyTable::get(int n, string *p_word, int *p_frequency)
+{
+  get(n, p_word, p_frequency, list);
+}
 
-//}
-//void FrequencyTable::destroy()
-//{
+void FrequencyTable::get(int n, string *p_word, int *p_frequency,
+			 WordFreqList runner)
+{
+  if (n == 0) {
+    WordFreq hold = first(runner);
+    *p_word = hold.word;
+    *p_frequency = hold.freq;
+  }
+}
 
-//}
+void FrequencyTable::destroy()
+{
 
-
+}
