@@ -33,7 +33,6 @@ WordFreqList prepend(string new_word, int new_freq, WordFreqList list);
 WordFreq first(WordFreqList list);
 WordFreqList rest(WordFreqList list);
 WordFreqList deleteFirst(WordFreqList list);
-void print(WordFreqList list);
 void insertAfter(string new_word, int new_freq, WordFreqList list);
 void set_freq(int new_freq, WordFreqList list);
 

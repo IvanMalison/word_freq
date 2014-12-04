@@ -1,16 +1,12 @@
-//
-// FrequencyTable1.h
-//
-//
-//    by: Katya Malison
-//    date: 11/26/14
-//
-#ifndef __FREQUENCYTABLE1_H__
-#define __FREQUENCYTABLE1_H__
+
+#ifndef __FREQUENCYTABLE2_H__
+#define __FREQUENCYTABLE2_H__
 
 #include <iostream>
 
 #include "WordFreqList.h"
+
+const int ALPHA = 26;
 
 using namespace std;
 
@@ -24,7 +20,7 @@ class FrequencyTable {
   void get(int n, string *p_word, int *p_frequency);
   void destroy();
  private:
-  WordFreqList list;
+  WordFreqList list[ALPHA];
   bool in(string word, WordFreqList runner);
   void insert(string word, WordFreqList runner);
   int frequency(string word, WordFreqList runner);
